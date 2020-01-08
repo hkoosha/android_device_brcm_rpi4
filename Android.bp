@@ -1,0 +1,6 @@
+subdirs = [
+    "audio",
+    "gps",
+    "light",
+    "memtrack",
+]

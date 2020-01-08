@@ -1,0 +1,12 @@
+// Copyright (C) 2011-2014 The Android-x86 Open Source Project
+
+cc_library_shared {
+    name: "gps.rpi4",
+    relative_install_path: "hw",
+    proprietary: true,
+    srcs: ["gps.c"],
+    shared_libs: [
+        "libcutils",
+        "liblog",
+    ],
+}

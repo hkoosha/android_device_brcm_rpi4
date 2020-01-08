@@ -1,0 +1,34 @@
+# Kernel
+kernel=zImage
+initramfs ramdisk.img 0x01f00000
+start_x=1
+
+# Audio
+dtparam=audio=on
+
+# Display
+hdmi_force_hotplug=1
+hdmi_drive=2
+hdmi_group=1
+hdmi_mode=4
+disable_overscan=1
+
+# Graphics acceleration
+#dtoverlay=vc4-fkms-v3d,cma-256
+#dtoverlay=vc4-kms-v3d,cma-256
+#mask_gpu_interrupt0=0x400
+#avoid_warnings=2
+
+# I2C
+dtparam=i2c_arm=on
+
+# RPI display/touchscreen
+dtoverlay=i2c-rtc,ds3231
+dtoverlay=rpi-backlight
+dtoverlay=rpi-ft5406
+
+# Serial console
+enable_uart=1
+
+# SPI
+dtparam=spi=on
