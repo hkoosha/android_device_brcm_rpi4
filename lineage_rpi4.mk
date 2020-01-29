@@ -8,6 +8,7 @@ $(call inherit-product, vendor/lineage/config/common_full_tablet_wifionly.mk)
 
 # Inherit device configuration
 $(call inherit-product, device/brcm/rpi4/rpi4.mk)
+$(call inherit-product-if-exists, vendor/brcm/rpi4/rpi4-vendor.mk)
 
 # Su
 WITH_SU := true
