@@ -15,7 +15,7 @@
 #
 
 DEVICE_PACKAGE_OVERLAYS += device/brcm/rpi4/overlay
-#$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
+
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/go_defaults.mk)
 $(call inherit-product, frameworks/native/build/tablet-7in-hdpi-1024-dalvik-heap.mk)
@@ -104,11 +104,10 @@ PRODUCT_PACKAGES += \
 
 # Wifi
 PRODUCT_PACKAGES += \
+    android.hardware.wifi@1.0-service \
     hostapd \
     wificond \
     wpa_supplicant
-    #ndroid.hardware.wifi@1.0-impl \
-    #android.hardware.wifi@1.0-service \
 
 # Ramdisk
 PRODUCT_COPY_FILES += \
