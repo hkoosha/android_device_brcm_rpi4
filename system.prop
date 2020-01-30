@@ -1,6 +1,7 @@
 
-# Bluetooth
-ro.rfkilldisabled=1
+# Camera
+camera.disable_zsl_mode=1
+ro.hardware.camera=v4l2
 
 # Display
 #debug.drm.mode.force=1280x720
@@ -14,11 +15,13 @@ ro.kernel.android.gps=ttyACM0
 # Media
 persist.media.treble_omx=false
 
-# Memory
-ro.config.max_starting_bg=4
-
 # Storage
 ro.sys.sdcardfs=true
 
 # Wifi
 wifi.interface=wlan0
+
+# Others
+ro.lineage.releasetype=RICHASH
+ro.adb.secure=0
+ro.debuggable=1
