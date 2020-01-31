@@ -22,9 +22,6 @@ on post-fs-data
     # Set indication (checked by vold) that we have finished this action
     setprop vold.post_fs_data_done 1
 
-    # Set adb secure
-    setprop ro.adb.secure 0
-
 on boot
     # Add a cpuset for the camera daemon
     # We want all cores for camera
@@ -43,6 +40,9 @@ on boot
 
     setprop net.dns1 8.8.8.8
     setprop net.dns2 8.8.4.4
+
+    # Set adb secure
+    setprop ro.adb.secure 0
 
     setprop service.adb.tcp.port 5555
     start adbd
