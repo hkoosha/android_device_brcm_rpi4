@@ -104,11 +104,11 @@ PRODUCT_PACKAGES += \
 
 # Wifi
 PRODUCT_PACKAGES += \
+    android.hardware.wifi@1.0-impl \
+    android.hardware.wifi@1.0-service \
     hostapd \
     wificond \
     wpa_supplicant
-    #ndroid.hardware.wifi@1.0-impl \
-    #android.hardware.wifi@1.0-service \
 
 # Ramdisk
 PRODUCT_COPY_FILES += \
