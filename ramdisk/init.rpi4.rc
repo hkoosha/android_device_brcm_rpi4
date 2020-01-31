@@ -35,6 +35,9 @@ on boot
     chown system system /dev/cpuset/camera-daemon/tasks
     chmod 0644 /dev/cpuset/camera-daemon/tasks
 
+    # blurtooth tool btuart
+    chmod 0777 /vendor/bin/btuart
+
     # Lights
     chown system system /sys/class/backlight/rpi_backlight/brightness
 
