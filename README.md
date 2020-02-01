@@ -3,11 +3,117 @@
 ### 說明
 這是LineageOS 16.0 使用 Raspberry Pi 4 的編譯設定環境，相關說明和操作[參考](https://github.com/02047788a/build-lineageOS-for-raspberry-pi)
 ### 修正問題
-1. lunch lineage_rpi4-userdebug 找不到 device [參考](https://source.android.com/setup/develop/new-device#build-a-product)
+1. lunch lineage_rpi4-userdebug 找不到 device [參考官方](https://source.android.com/setup/develop/new-device#build-a-product) 
+   - 新增[AndroidProducts.mk](AndroidProducts.mk)檔案定義**COMMON_LUNCH_CHOICES**
 2. bootloader 無法載入zImage (linux kernel)
+   - 修改[config.txt](boot/config.txt)不要用位址的方式去定位zImage
 3. 修正wifi無法正常運作
+   - 修改[rpi4.mk](rpi4.mk) 編譯時指定wifi需要用到的packages
+       ``` bash
+       # WIFI
+       PRODUCT_PACKAGES += \
+        android.hardware.wifi@1.0-service \
+        hostapd \
+        wpa_supplicant
+        ```
+   - 修改[init.rpi4.rc](ramdisk/init.rpi4.rc) 啟動wpa_supplicant 參數
+        ```bash
+        service wpa_supplicant /vendor/bin/hw/wpa_supplicant \
+            -O/data/vendor/wifi/wpa/sockets \
+            -g@android:wpa_wlan0
+            interface android.hardware.wifi.supplicant@1.0::ISupplicant default
+            interface android.hardware.wifi.supplicant@1.1::ISupplicant default
+            class main
+            socket wpa_wlan0 dgram 660 wifi wifi
+            disabled
+            oneshot
+        ``` 
+   - 修改[manifest.xml](manifest.xml) 載入wifi相關packages
+        ```xml
+        <hal format="hidl">
+                <name>android.hardware.wifi</name>
+                <transport>hwbinder</transport>
+                <version>1.2</version>
+                <interface>
+                    <name>IWifi</name>
+                    <instance>default</instance>
+                </interface>
+            </hal>
+            <hal format="hidl">
+                <name>android.hardware.wifi.hostapd</name>
+                <transport>hwbinder</transport>
+                <version>1.0</version>
+                <interface>
+                    <name>IHostapd</name>
+                    <instance>default</instance>
+                </interface>
+            </hal>
+            <hal format="hidl">
+                <name>android.hardware.wifi.supplicant</name>
+                <transport>hwbinder</transport>
+                <version>1.1</version>
+                <interface>
+                    <name>ISupplicant</name>
+                    <instance>default</instance>
+                </interface>
+            </hal>
+        ```
 4. 修正bluetooth無法正常運作
-
+   - 使用[KonstaKANG](https://konstakang.com/devices/rpi4/LineageOS16.0/)提供的lieage os 16.0 提取可以用的[bluetooth 1.0服務](prebuilt/vendor/bin/hw/android.hardware.bluetooth%401.0-service.rpi4)
+   - 新增bluetooth 1.0 啟動服務檔案 [bluetooth@1.0-service.rpi4.rc](prebuilt/vendor/etc/init/android.hardware.bluetooth@1.0-service.rpi4.rc)
+   - 修改[manifest.xml](manifest.xml) 載入bluetooth相關packages
+   ```xml
+    <hal format="hidl">
+        <name>android.hardware.bluetooth</name>
+        <transport>hwbinder</transport>
+        <version>1.0</version>
+        <interface>
+            <name>IBluetoothHci</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+   ```
+5. 修正health服務無法正常啟動 *(無法正常進入Android)*
+    - 使用[KonstaKANG](https://konstakang.com/devices/rpi4/LineageOS16.0/)提供的lieage os 16.0 提取可以用的[health 2.0服務](prebuilt/vendor/bin/hw/android.hardware.health@2.0-service.rpi4)
+    - 新增health 2.0啟動服務檔案 [health@2.0-service.rpi4.rc](prebuilt/vendor/etc/init/android.hardware.health@2.0-service.rpi4.rc)
+    - 修改[manifest.xml](manifest.xml) 載入health相關packages
+        ```xml
+        <hal format="hidl">
+            <name>android.hardware.health</name>
+            <transport>hwbinder</transport>
+            <version>2.0</version>
+            <interface>
+                <name>IHealth</name>
+                <instance>default</instance>
+            </interface>
+        </hal>
+        ```
+6. 修正DRM服務無法正常啟動
+    - 修改[rpi4.mk](rpi4.mk) 編譯時指定wifi需要用到的packages
+        ``` bash
+        # DRM
+        PRODUCT_PACKAGES += \
+        android.hardware.drm@1.0-impl \
+        android.hardware.drm@1.0-service
+        ``` 
+    - 修改[manifest.xml](manifest.xml) 載入health相關packages
+        ```xml
+        <hal format="hidl">
+            <name>android.hardware.drm</name>
+            <transport>hwbinder</transport>
+            <version>1.0</version>
+            <interface>
+                <name>ICryptoFactory</name>
+                <instance>widevine</instance>
+                <instance>default</instance>
+            </interface>
+            <interface>
+                <name>IDrmFactory</name>
+                <instance>widevine</instance>
+                <instance>default</instance>
+            </interface>
+        </hal>
+    ```
 ### 已知問題
 1. 重開機後Apps Icon會不見
 2. 無法adb連線
