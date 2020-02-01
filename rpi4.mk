@@ -43,14 +43,6 @@ PRODUCT_COPY_FILES += \
     frameworks/av/services/audiopolicy/config/r_submix_audio_policy_configuration.xml:vendor/etc/r_submix_audio_policy_configuration.xml \
     frameworks/av/services/audiopolicy/config/usb_audio_policy_configuration.xml:vendor/etc/usb_audio_policy_configuration.xml
 
-# Bluetooth
-PRODUCT_PACKAGES += \
-    android.hardware.bluetooth@1.0-service.rpi4
-
-# DRM
-PRODUCT_PACKAGES += \
-    android.hardware.drm@1.0-impl
-
 # GPS
 PRODUCT_PACKAGES += \
     android.hardware.gnss@1.0-impl \
@@ -90,6 +82,21 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.light@2.0-service.rpi4
 
+# DRM
+PRODUCT_PACKAGES += \
+    android.hardware.drm@1.0-impl \
+    android.hardware.drm@1.0-service
+
+# configstore
+PRODUCT_PACKAGES += \
+    android.hardware.configstore@1.1-service
+
+# WIFI
+PRODUCT_PACKAGES += \
+    android.hardware.wifi@1.0-service \
+    hostapd \
+    wpa_supplicant
+
 # Power
 PRODUCT_PACKAGES += \
     android.hardware.power@1.0-impl \
@@ -99,14 +106,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.usb@1.0-impl \
     android.hardware.usb@1.0-service
-
-# Wifi
-PRODUCT_PACKAGES += \
-    android.hardware.wifi@1.0-impl \
-    android.hardware.wifi@1.0-service \
-    hostapd \
-    wificond \
-    wpa_supplicant
 
 # Ramdisk
 PRODUCT_COPY_FILES += \
