@@ -4,8 +4,9 @@
 這是LineageOS 16.0 使用 Raspberry Pi 4 的編譯設定環境，相關說明和操作[參考](https://github.com/02047788a/build-lineageOS-for-raspberry-pi)
 ### 修正問題
 1. lunch lineage_rpi4-userdebug 找不到 device [參考](https://source.android.com/setup/develop/new-device#build-a-product)
-2. 修正wifi無法正常運作
-3. 修正bluetooth無法正常運作
+2. bootloader 無法載入zImage (linux kernel)
+3. 修正wifi無法正常運作
+4. 修正bluetooth無法正常運作
 
 ### 已知問題
 1. 重開機後Apps Icon會不見
