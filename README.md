@@ -59,22 +59,22 @@
             </hal>
         ```
 4. 修正bluetooth無法正常運作
-   - 使用[KonstaKANG](https://konstakang.com/devices/rpi4/LineageOS16.0/)提供的lieage os 16.0 提取可以用的[bluetooth 1.0服務](prebuilt/vendor/bin/hw/android.hardware.bluetooth%401.0-service.rpi4)
+   - 使用[KonstaKANG](https://konstakang.com/devices/rpi4/LineageOS16.0/)提供的lieageOS-16.0映像，提取可以用的[bluetooth 1.0服務](prebuilt/vendor/bin/hw/android.hardware.bluetooth%401.0-service.rpi4)
    - 新增bluetooth 1.0 啟動服務檔案 [bluetooth@1.0-service.rpi4.rc](prebuilt/vendor/etc/init/android.hardware.bluetooth@1.0-service.rpi4.rc)
    - 修改[manifest.xml](manifest.xml) 載入bluetooth相關packages
-   ```xml
-    <hal format="hidl">
-        <name>android.hardware.bluetooth</name>
-        <transport>hwbinder</transport>
-        <version>1.0</version>
-        <interface>
-            <name>IBluetoothHci</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-   ```
+    ```xml
+        <hal format="hidl">
+            <name>android.hardware.bluetooth</name>
+            <transport>hwbinder</transport>
+            <version>1.0</version>
+            <interface>
+                <name>IBluetoothHci</name>
+                <instance>default</instance>
+            </interface>
+        </hal>
+    ```
 5. 修正health服務無法正常啟動 *(無法正常進入Android)*
-    - 使用[KonstaKANG](https://konstakang.com/devices/rpi4/LineageOS16.0/)提供的lieage os 16.0 提取可以用的[health 2.0服務](prebuilt/vendor/bin/hw/android.hardware.health@2.0-service.rpi4)
+    - 使用[KonstaKANG](https://konstakang.com/devices/rpi4/LineageOS16.0/)提供的lieageOS-16.0映像，提取可以用的[health 2.0服務](prebuilt/vendor/bin/hw/android.hardware.health@2.0-service.rpi4)
     - 新增health 2.0啟動服務檔案 [health@2.0-service.rpi4.rc](prebuilt/vendor/etc/init/android.hardware.health@2.0-service.rpi4.rc)
     - 修改[manifest.xml](manifest.xml) 載入health相關packages
         ```xml
@@ -114,6 +114,25 @@
             </interface>
         </hal>
     ```
+7. 修正configstore服務無法正常啟動
+   - 修改[rpi4.mk](rpi4.mk) 編譯時指定wifi需要用到的packages
+        ``` bash
+        # configstore
+        PRODUCT_PACKAGES += \
+            android.hardware.configstore@1.1-service
+        ``` 
+    - 修改[manifest.xml](manifest.xml) 載入health相關packages
+        ```xml
+        <hal format="hidl">
+            <name>android.hardware.configstore</name>
+            <transport>hwbinder</transport>
+            <version>1.1</version>
+            <interface>
+                <name>ISurfaceFlingerConfigs</name>
+                <instance>default</instance>
+            </interface>
+        </hal>
+        ```
 ### 已知問題
 1. 重開機後Apps Icon會不見
 2. 無法adb連線
