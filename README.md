@@ -5,8 +5,9 @@
 
 ### **操作說明文件**
 + [如何下載LineageOS程式碼](./documents/sync-lineageos-code.md)
-  - 支援 lineage-15.1 使用 rpi3
-  - 支援 lineage-16.0 使用 rpi4
+  + 執行腳本輸入提示
+    - branch: **lineage-16.0**
+    - device name: **rpi4**
   ```bash
   #自動化下載腳本
   $ wget https://raw.githubusercontent.com/02047788a/build-lineageOS-rpi3/master/scripts/sync-lineageos-code.sh -O sync-lineageos-code.sh
