@@ -2,6 +2,34 @@
 
 ### 說明
 這是LineageOS 16.0 使用 Raspberry Pi 4 的編譯設定環境，相關說明和操作[參考](https://github.com/02047788a/build-lineageOS-for-raspberry-pi)
+
+### **操作說明文件**
++ [如何下載LineageOS程式碼](./documents/sync-lineageos-code.md)
+  - 支援 lineage-15.1 使用 rpi3
+  - 支援 lineage-16.0 使用 rpi4
+  ```bash
+  #自動化下載腳本
+  $ wget https://raw.githubusercontent.com/02047788a/build-lineageOS-rpi3/master/scripts/sync-lineageos-code.sh -O sync-lineageos-code.sh
+  # 執行腳本輸入提示
+  # Please entry lineageOS checkout folder : /home/Downlaods/LineageOS-16.0  (your source folder)
+  # Please entry checkout lineageOS branch : lineage-16.0 
+  # Please entry build device name(ex:,rpi3,rpi4) : rpi4
+  ```
+  > 輸入的變數都存在~/.profile 裡面 (**$LINEAGE_SRC, $LINEAGE_BRANCH, $DEVICE_NAME**)
+
++ [如何編譯LineageOS程式碼](./documents/build-lineageos-code.md)
+    ```bash
+    # 下載腳本到程式碼目錄
+    $ wget https://raw.githubusercontent.com/02047788a/build-lineageOS-rpi3/master/scripts/build-lineageos-code.sh -O build-lineageos-code.sh
+    $ sudo ./build-lineageos-code.sh #編譯全部映像kernel ramdisk systemimage vendorimage
+    ```
+    > 編譯後產生可安裝的image路徑: \$LINEAGE_SRC/out/target/product/rpi4/*lineage-16.0-20200201-rpi4.img**
++ 燒錄映像到SD卡
+    ```bash
+    $ sudo dd if=lineage-16.0-20200201-rpi4.img of=/dev/sdX status=progress bs=4M
+    ```
+    > /dev/sdX 是你SD卡的路徑，注意要改阿!!!
+
 ### 修正問題
 1. lunch lineage_rpi4-userdebug 找不到 device [參考官方](https://source.android.com/setup/develop/new-device#build-a-product) 
    - 新增[AndroidProducts.mk](AndroidProducts.mk)檔案定義**COMMON_LUNCH_CHOICES**
