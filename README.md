@@ -140,3 +140,5 @@
 This adbd's $ADB_VENDOR_KEYS is not set; try 'adb kill-server' if that seems wrong. \
 Otherwise check for a confirmation dialog on your device.
 3. 無法root進入系統
+4. 未整併TFT LCD觸控螢幕
+5. 未整併Pi Camera
