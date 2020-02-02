@@ -136,9 +136,9 @@
 ### 已知問題
 1. 重開機後Apps Icon會不見
 2. 無法adb連線
-> error: device unauthorized. \
-This adbd's $ADB_VENDOR_KEYS is not set; try 'adb kill-server' if that seems wrong. \
-Otherwise check for a confirmation dialog on your device.
+    > error: device unauthorized. \
+    This adbd's $ADB_VENDOR_KEYS is not set; try 'adb kill-server' if that seems wrong. \
+    Otherwise check for a confirmation dialog on your device.
 3. 無法root進入系統
 4. 未整併TFT LCD觸控螢幕
 5. 未整併Pi Camera
