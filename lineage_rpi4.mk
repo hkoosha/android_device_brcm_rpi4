@@ -20,7 +20,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := rpi4
 PRODUCT_NAME := lineage_rpi4
-PRODUCT_BRAND := Raspberry
-PRODUCT_MODEL := Raspberry Pi 4
-PRODUCT_MANUFACTURER := Raspberry
-PRODUCT_RELEASE_NAME := Raspberry Pi 4
+PRODUCT_BRAND := Richash
+PRODUCT_MODEL := Richash RPi4
+PRODUCT_MANUFACTURER := Richash
+PRODUCT_RELEASE_NAME := Richash RPi4
+
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.lineage.releasetype=Richash
