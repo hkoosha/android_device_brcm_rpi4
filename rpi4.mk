@@ -115,6 +115,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(call find-copy-subdir-files,*,device/brcm/rpi4/prebuilt/vendor,vendor)
 
+# add busybos to device
+PRODUCT_COPY_FILES += \
+    device/brcm/rpi4/prebuilt/bin/busybox-armv7l:$(TARGET_COPY_OUT_ROOT)/bin/busybox 
+
 # Media codecs
 PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:vendor/etc/media_codecs_google_audio.xml \
