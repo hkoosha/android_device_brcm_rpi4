@@ -19,6 +19,7 @@ DEVICE_PACKAGE_OVERLAYS += device/brcm/rpi4/overlay
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/go_defaults.mk)
 $(call inherit-product, frameworks/native/build/tablet-7in-hdpi-1024-dalvik-heap.mk)
+$(call inherit-product, vendor/brcm/rpi4/rpi4-vendor.mk)
 
 PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := mdpi
@@ -113,10 +114,6 @@ PRODUCT_COPY_FILES += \
 # Prebuilt
 PRODUCT_COPY_FILES += \
     $(call find-copy-subdir-files,*,device/brcm/rpi4/prebuilt/vendor,vendor)
-
-# busybox
-PRODUCT_COPY_FILES += \
-    device/brcm/rpi4/prebuilt/bin/busybox-armv7l:$(TARGET_COPY_OUT_SYSTEM)/bin/busybox
 
 # Media codecs
 PRODUCT_COPY_FILES += \
