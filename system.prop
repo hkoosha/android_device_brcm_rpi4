@@ -20,6 +20,3 @@ ro.sys.sdcardfs=true
 
 # Wifi
 wifi.interface=wlan0
-
-# others
-service.adb.root=1
