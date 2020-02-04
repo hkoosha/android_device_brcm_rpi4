@@ -21,7 +21,5 @@ ro.sys.sdcardfs=true
 # Wifi
 wifi.interface=wlan0
 
-# Others
-ro.lineage.releasetype=RICHASH
-ro.adb.secure=0
-ro.debuggable=1
+# others
+service.adb.root=1
