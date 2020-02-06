@@ -117,7 +117,7 @@ PRODUCT_COPY_FILES += \
 
 # add busybos to device
 PRODUCT_COPY_FILES += \
-    device/brcm/rpi4/prebuilt/bin/busybox-armv7l:$(TARGET_COPY_OUT_ROOT)/bin/busybox 
+    device/brcm/rpi4/prebuilt/system/bin/busybox-armv7l:$(TARGET_COPY_OUT_SYSTEM)/bin/busybox 
 
 # Media codecs
 PRODUCT_COPY_FILES += \
