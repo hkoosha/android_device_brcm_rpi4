@@ -3,6 +3,8 @@
 ### 說明
 這是LineageOS 16.0 使用 Raspberry Pi 4 的編譯設定環境，相關說明和操作[參考](https://github.com/02047788a/build-lineageOS-for-raspberry-pi)
 
+> 不用master branch 了
+
 ### **操作說明文件**
 + [如何下載LineageOS程式碼](./documents/sync-lineageos-code.md)
   + 執行腳本輸入提示
