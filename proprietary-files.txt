@@ -1,10 +1,2 @@
 # Bluetooth
 vendor/firmware/brcm/BCM4345C0.hcd
-vendor/firmware/brcm/BCM43430A1.hcd
-
-# Graphics
-vendor/lib/hw/gralloc.rpi4.so
-vendor/lib/hw/hwcomposer.rpi4.so
-
-# Widevine
-vendor/lib/mediadrm/libwvdrmengine.so

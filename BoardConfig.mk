@@ -1,11 +1,11 @@
 #
-# Copyright (C) 2017 The LineageOS Project
+# Copyright (C) 2020 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
-# http://www.apache.org/licenses/LICENSE-2.0
+#      http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
@@ -14,75 +14,30 @@
 # limitations under the License.
 #
 
-LOCAL_PATH := device/brcm/rpi4
+-include device/brcm/rpi-common/BoardConfigCommon.mk
+
+DEVICE_PATH := device/brcm/rpi4
 
 # Platform
-TARGET_NO_BOOTLOADER := true
-TARGET_NO_RECOVERY := true
-
-TARGET_BOARD_PLATFORM := bcm2711
-
 TARGET_ARCH := arm
-TARGET_ARCH_VARIANT := armv7-a-neon
+TARGET_ARCH_VARIANT := armv8-a
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
-TARGET_CPU_VARIANT := cortex-a53
-
-#TARGET_ARCH := arm64
-#TARGET_ARCH_VARIANT := armv8-a
-#TARGET_CPU_ABI := arme64-v8a
-#TARGET_CPU_ABI2 := 
-#TARGET_CPU_VARIANT := generic
-
-#TARGET_2ND_ARCH := arm
-#TARGET_2ND_ARCH_VARIANT := armv7-a-neon
-#TARGET_2ND_CPU_ABI := armeabi-v7a
-#TARGET_2ND_CPU_ABI2 := armeabi
-#TARGET_2ND_CPU_VARIANT := cortex-a53
+TARGET_CPU_VARIANT := cortex-a72
 
 # Kernel
 BOARD_KERNEL_IMAGE_NAME := zImage
 TARGET_KERNEL_CONFIG := lineageos_rpi4_defconfig
-TARGET_KERNEL_SOURCE := kernel/brcm/rpi4
-
-# Audio
-USE_XML_AUDIO_POLICY_CONF := 1
-
-# Binder
-TARGET_USES_64_BIT_BINDER := true
-
-# Bluetooth
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(LOCAL_PATH)/bluetooth
-BOARD_CUSTOM_BT_CONFIG := $(LOCAL_PATH)/bluetooth/vnd_rpi4.txt
-BOARD_HAVE_BLUETOOTH := true
-BOARD_HAVE_BLUETOOTH_BCM := true
+TARGET_KERNEL_SOURCE := kernel/brcm/rpi
 
 # Graphics
-#BOARD_GPU_DRIVERS := vc4
-TARGET_USES_HWC2 := true
-USE_OPENGL_RENDERER := true
+BOARD_GPU_DRIVERS := v3d kmsro
+NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
+TARGET_SCREEN_DENSITY := 240
+TARGET_USE_V3D_KMSRO := true
 
-# Memory
-MALLOC_SVELTE := true
+# Manifest
+DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/manifest.xml
 
-# Partition sizes
-BOARD_FLASH_BLOCK_SIZE := 4096
-BOARD_SYSTEMIMAGE_PARTITION_SIZE := 1073741824 # 1024M
-BOARD_USERDATAIMAGE_PARTITION_SIZE := 134217728 # 128M
-BOARD_VENDORIMAGE_PARTITION_SIZE := 268435456 # 256M
-BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
-BOARD_USES_VENDORIMAGE := true
-TARGET_COPY_OUT_VENDOR := vendor
-TARGET_USERIMAGES_SPARSE_EXT_DISABLED := true
-TARGET_USERIMAGES_USE_EXT4 := true
-
-# SELinux
-BOARD_SEPOLICY_DIRS += device/brcm/rpi4/sepolicy
-
-# Wifi
-BOARD_WLAN_DEVICE := bcmdhd
-BOARD_HOSTAPD_DRIVER := NL80211
-BOARD_HOSTAPD_PRIVATE_LIB := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
-BOARD_WPA_SUPPLICANT_DRIVER := NL80211
-BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
-WPA_SUPPLICANT_VERSION := VER_0_8_X
+# Properties
+TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
