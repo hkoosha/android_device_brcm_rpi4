@@ -16,7 +16,6 @@
 
 DEVICE_PATH := device/brcm/rpi4
 PRODUCT_SOONG_NAMESPACES += $(DEVICE_PATH)
-PRODUCT_SOONG_NAMESPACES += external/mesa3d
 
 $(call inherit-product, frameworks/native/build/tablet-7in-xhdpi-2048-dalvik-heap.mk)
 $(call inherit-product, vendor/brcm/rpi4/rpi4-vendor.mk)
